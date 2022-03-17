@@ -7,7 +7,7 @@ import Result from './components/Result'
 export default function App() {
   
   const [searchText, setSearchText] = useState('')
-  const url = `https://api.github.com/search/users?q=${user}`
+  const url = `https://api.github.com/search/users?q=${searchText}`
   
 
   return (
