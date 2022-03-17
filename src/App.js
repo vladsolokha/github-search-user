@@ -1,4 +1,3 @@
-
 import './App.css';
 import Search from './components/Search'
 import Result from './components/Result'
