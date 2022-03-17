@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Search () {
+export default function Search ({ searchText, onSetSearchTextChange }) {
     return (
         <div className='search-container'>
             <input 
@@ -8,6 +8,9 @@ export default function Search () {
                 name='search'
                 type='search'
                 placeholder='search for user'
+                value={searchText}
+                onChange={
+                    (e) => onSetSearchTextChange(e.target.value)} 
             />
             <button
                 name='search-button'
