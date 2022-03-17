@@ -1,0 +1,24 @@
+/* Heading font  */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/* Main font  */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+.App {
+  font-family: 'Bebas Neue', cursive;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
+  padding: 10px;
+}
+
+.App-header {
+  font-size: 90px;
+}
+
+.main {
+  font-family: 'Noto Serif', serif;
+  font-size: 32px;
+}
