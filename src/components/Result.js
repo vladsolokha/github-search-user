@@ -1,10 +1,8 @@
 import './Result.css'
 
 export default function Result ({ error, isLoading, resultList }) {
-  const totalCount = () => {
-    resultList.totalCount?.map(item => item.total_count)
-  }
-
+  const totalCount = resultList.total_count
+  
   if (error) {
     return (
       <div>
@@ -27,8 +25,13 @@ export default function Result ({ error, isLoading, resultList }) {
             {resultList.items?.map(item => (
               <li key={item.id}>
                 <a href={item.html_url}>
-                  {item.login}
-                  {item.avatar_url}
+                  <div className='user-name'>{item.login}</div>
+                  <div className='user-avatar'>
+                    <img src={item.avatar_url} alt='user avatar' />
+                  </div>
+                  <div className='user-starred'>
+                    {item.starred_url}
+                  </div>
                 </a>
               </li>
             ))}
