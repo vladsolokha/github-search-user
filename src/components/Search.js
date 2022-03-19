@@ -1,9 +1,8 @@
-export default function Search ({ searchText, onSetSearchTextChange, setUrl, fetchHandle}) {
+export default function Search ({ searchText, onSetSearchTextChange, fetchHandle}) {
   return (
-    <form onSubmit={(e) => {
+    <form onSubmit={ async (e) => {
       e.preventDefault()
-      setUrl(`https://api.github.com/search/users?q=${searchText}`)
-      .then(fetchHandle())
+      fetchHandle()
     }}>
       <input 
         className='search-bar'

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 import './App.css';
 import Search from './components/Search'
 import Result from './components/Result'
+
 
 export default function App() {
   const [searchText, setSearchText] = useState('')
@@ -10,21 +12,28 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [resultList, setResultList] = useState([])
   
-  function fetchHandle() {
-    fetch(`${url}`)
-      .then((res) => {res.json()})
-      .then((result) => {
-          console.log(`result from fetch is: ${result}`)
-          setIsLoading(true)
-          setResultList(result)
-        }, (error) => {
-          setIsLoading(true)
-          setError(error)
-        })
-        console.log({url})
-        console.log(`result list updated to: ${resultList}`)
+  async function fetchHandle() {
+    setUrl(`https://api.github.com/search/users?q=${searchText}`)
+
+    setIsLoading(true)
+
+    try {
+      const result = await axios(`${url}`)
+      setResultList(result.data)
+      console.log('this is results: ' + result.data)
+    } catch (error) {
+      setError(error)
     }
-    
+
+    setIsLoading(false)
+  }  
+
+  useEffect(() => {
+    console.log('resultList' + {resultList})
+    console.log('url' + {url})
+    console.log('searchText' + {searchText})
+
+  }, [url])
   
   return (
     <div className="App">
@@ -36,7 +45,6 @@ export default function App() {
         <Search 
           searchText={searchText}
           onSetSearchTextChange={setSearchText}
-          setUrl={setUrl}
           fetchHandle={() => {fetchHandle()}}
         />
 
