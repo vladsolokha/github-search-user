@@ -1,6 +1,9 @@
 import './Result.css'
 
 export default function Result ({ error, isLoading, resultList }) {
+  const totalCount = () => {
+    resultList.totalCount?.map(item => item.total_count)
+  }
 
   if (error) {
     return (
@@ -16,12 +19,12 @@ export default function Result ({ error, isLoading, resultList }) {
     return (
       <div className='results'>
         <div className='total-count'>
-          {/* Total Results: {resultList.total_count} */}
+          Total Results: {totalCount}        
         </div>
-{/*                 
+                
         <div className='user containers'>
           <ul>
-            {resultList.items.map(item => (
+            {resultList.items?.map(item => (
               <li key={item.id}>
                 <a href={item.html_url}>
                   {item.login}
@@ -30,7 +33,7 @@ export default function Result ({ error, isLoading, resultList }) {
               </li>
             ))}
           </ul>
-        </div> */}
+        </div>
       </div>
     )
   }

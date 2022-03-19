@@ -60,21 +60,7 @@ export default function App() {
           isLoaded={isLoading}
           resultList={resultList}
         />
-
-        <div>
-          <ul>
-              {resultList.items?.map(item => (
-                <li key={item.id}>
-                  <a href={item.html_url}>
-                    {item.login}
-                    {item.avatar_url}
-                  </a>
-                </li>
-              ))}
-            </ul>
-        </div>
-      </div> 
-
+      </div>
     </div>
   );
 }
