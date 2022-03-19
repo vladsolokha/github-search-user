@@ -1,16 +1,37 @@
-import React from 'react'
+import './Result.css'
 
-export default function Result () {
+export default function Result ({ error, isLoading, resultList }) {
+
+  if (error) {
     return (
-        <div className='result-container'>
-            <table>
-                <tr>
-                    <th>User</th>
-                </tr>
-                <tr>
-                    <td>Bob</td>
-                </tr>
-            </table>
-        </div>
+      <div>
+        Something went wrong...    
+        <br/>
+        Error: {error.message}
+      </div>
     )
+  } else if (isLoading) {
+    <div>Loading users...</div> 
+  } else {
+    return (
+      <div className='results'>
+        <div className='total-count'>
+          {/* Total Results: {resultList.total_count} */}
+        </div>
+{/*                 
+        <div className='user containers'>
+          <ul>
+            {resultList.items.map(item => (
+              <li key={item.id}>
+                <a href={item.html_url}>
+                  {item.login}
+                  {item.avatar_url}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div> */}
+      </div>
+    )
+  }
 }
