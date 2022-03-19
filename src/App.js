@@ -18,22 +18,14 @@ export default function App() {
     setIsLoading(true)
 
     try {
-      const result = await axios(`${url}`)
+      const result = await axios.get(url)
       setResultList(result.data)
-      console.log('this is results: ' + result.data)
     } catch (error) {
       setError(error)
     }
 
     setIsLoading(false)
   }  
-
-  useEffect(() => {
-    console.log('resultList' + {resultList})
-    console.log('url' + {url})
-    console.log('searchText' + {searchText})
-
-  }, [url])
   
   return (
     <div className="App">
@@ -42,17 +34,45 @@ export default function App() {
       </header>
 
       <div className='main'>
-        <Search 
-          searchText={searchText}
-          onSetSearchTextChange={setSearchText}
-          fetchHandle={() => {fetchHandle()}}
-        />
+        <form onSubmit={(e) => {
+            fetchHandle()
+            e.preventDefault()
+          }}>
+          <input 
+            className='search-bar'
+            name='search'
+            type='search'
+            placeholder='search for user'
+            value={searchText}
+            onChange={
+              (e) => setSearchText(e.target.value)} 
+          />
+          <button
+            className='search-button'
+            type='submit'
+          >Search
+          </button>
+        </form>
+
 
         <Result 
           error={error}
           isLoaded={isLoading}
           resultList={resultList}
         />
+
+        <div>
+          <ul>
+              {resultList.items?.map(item => (
+                <li key={item.id}>
+                  <a href={item.html_url}>
+                    {item.login}
+                    {item.avatar_url}
+                  </a>
+                </li>
+              ))}
+            </ul>
+        </div>
       </div> 
 
     </div>
