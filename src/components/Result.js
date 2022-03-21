@@ -3,7 +3,6 @@ import { Octokit } from '@octokit/core'
 import './Result.css'
 
 export default function Result ({ error, isLoading, resultList }) {
-  const totalCount = resultList.total_count
   const [userResult, setUserResult] = useState([])
   const [itemClicked, setItemClicked] = useState(null)
   
@@ -34,10 +33,7 @@ export default function Result ({ error, isLoading, resultList }) {
   } if (resultList !== []) {
     return (
       <div className='results'>
-        <div className='total-count'>
-          Total Results: {totalCount}
-        </div>
-                
+        
         <div className='user containers'>
           <ul>
             {resultList.items?.map(item => (

@@ -13,6 +13,9 @@ export default function App() {
   const [resultList, setResultList] = useState([])
   const [sortUsers, setSortUsers] = useState('best match')
   const [page, setPage] = useState(1)
+
+  const totalCount = resultList.total_count
+
   
   useEffect(() => {
     async function fetchHandle() {
@@ -43,11 +46,11 @@ export default function App() {
   
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="App-header" onClick='#'>
        GitHub User Search 
       </header>
 
-      <div className='main'>
+      <section className='user-inputs'>
         {/* This Form can be placed in another component */}
         <form onSubmit={ (e) => {
             e.preventDefault()
@@ -69,24 +72,35 @@ export default function App() {
           </button>
         </form>
         
-        {/* <Error error={error} /> */}
-
-        <div className='sort-nav'>
-              
+          <div className='filter-bar'>
+            <select name='sort by'>
+              <option value='best match'>Best Match</option>
+              <option value='followers'>Followers</option>
+              <option value='repositories'>Repositories</option>
+              <option value='joined'>Joined Date</option>
+            </select>
+          </div>
+     
+      </section>
+        
+      {/* total and page section */}
+      <section className='total-pagination-section'>
+        <div className='total-count'>
+          Total Results: {totalCount}
         </div>
-
+      
         <div className='pagination'>
-            
+          Display Pages
         </div>
+      </section>
+      {/* <Error error={error} /> */}
 
-        <Result 
-          error={error}
-          isLoaded={isLoading}
-          resultList={resultList}
-        />
+      <Result 
+        error={error}
+        isLoaded={isLoading}
+        resultList={resultList}
+      />
 
-
-      </div>
     </div>
   );
 }
