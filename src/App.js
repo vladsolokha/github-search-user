@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Octokit } from '@octokit/core'
 import './App.css';
-import Search from './components/Search'
 import Result from './components/Result'
 
 
@@ -14,13 +12,17 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [resultList, setResultList] = useState([])
   const [sortUsers, setSortUsers] = useState('best match')
+  const [page, setPage] = useState(1)
   
   useEffect(() => {
     async function fetchHandle() {
       setIsLoading(true)  
       try {
         const result = await octokit.request("GET /search/users", {
-          q: `${searchText}`
+          q: `${searchText}`,
+          sortUsers: `${sortUsers}`,
+          per_page: 10,
+          page: `${page}`
         });
         // const result = await axios.get(url)
         setResultList(result.data)
@@ -66,12 +68,24 @@ export default function App() {
           >Search
           </button>
         </form>
+        
+        {/* <Error error={error} /> */}
+
+        <div className='sort-nav'>
+              
+        </div>
+
+        <div className='pagination'>
+            
+        </div>
 
         <Result 
           error={error}
           isLoaded={isLoading}
           resultList={resultList}
         />
+
+
       </div>
     </div>
   );

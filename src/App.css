@@ -22,3 +22,7 @@
   font-family: 'Noto Serif', serif;
   font-size: 32px;
 }
+
+form {
+  margin: auto;
+}

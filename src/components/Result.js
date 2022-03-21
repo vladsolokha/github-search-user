@@ -1,7 +1,23 @@
+import { useState } from 'react'
+import { Octokit } from '@octokit/core'
 import './Result.css'
 
 export default function Result ({ error, isLoading, resultList }) {
   const totalCount = resultList.total_count
+  const [userResult, setUserResult] = useState([])
+  const [itemClicked, setItemClicked] = useState(null)
+  
+  const handleMoreInfo = async (id, login) => {
+    const octokit = new Octokit()
+    // error 401 requires authentication for next lines
+    setItemClicked(itemClicked => itemClicked === id ? 
+      null : id)
+    
+    const result = await octokit.request("GET /users/{username}", {
+      username:  `${login}`
+    })
+    setUserResult(result.data)
+    }
   
   if (error) {
     return (
@@ -15,11 +31,11 @@ export default function Result ({ error, isLoading, resultList }) {
     return (
       <div>Loading users...</div> 
     )
-  } else {
+  } if (resultList !== []) {
     return (
       <div className='results'>
         <div className='total-count'>
-          Total Results: {totalCount}        
+          Total Results: {totalCount}
         </div>
                 
         <div className='user containers'>
@@ -35,10 +51,22 @@ export default function Result ({ error, isLoading, resultList }) {
                   <div className='user-avatar'>
                     <img src={item.avatar_url} alt='user avatar' />
                   </div>
-                  <div className='user-starred'>
-                    {item.starred_url}
-                  </div>
                 </a>
+                  <button 
+                    className='user-more-info-button'
+                    onClick={() => {
+                      handleMoreInfo(item.id, item.login)
+                    }}>
+                    More info
+                  </button>
+
+                  {itemClicked === item.id &&  
+                    <div className='user-more-info-section'>
+                        Followers: {userResult.followers}<br/>
+                        Public repos: {userResult.public_repos}<br/>
+                        Bio: {userResult.bio}<br/>
+                    </div>
+                  } 
               </li>
             ))}
           </ul>

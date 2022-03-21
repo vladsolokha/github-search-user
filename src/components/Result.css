@@ -2,6 +2,13 @@
     font-size: 16px;
 }
 
+.user-containers {
+    
+}
+.user-containers li{
+    display: flex;
+    flex-direction: row;
+}
 .user-avatar img {
     width: 50px;
     height: 50px;
