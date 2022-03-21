@@ -11,8 +11,10 @@ export default function Result ({ error, isLoading, resultList }) {
         Error: {error.message}
       </div>
     )
-  } else if (isLoading) {
-    <div>Loading users...</div> 
+  } if (isLoading) {
+    return (
+      <div>Loading users...</div> 
+    )
   } else {
     return (
       <div className='results'>
@@ -24,7 +26,11 @@ export default function Result ({ error, isLoading, resultList }) {
           <ul>
             {resultList.items?.map(item => (
               <li key={item.id}>
-                <a href={item.html_url}>
+                <a 
+                  href={item.html_url}
+                  target='_blank'
+                  rel="noreferrer"
+                >
                   <div className='user-name'>{item.login}</div>
                   <div className='user-avatar'>
                     <img src={item.avatar_url} alt='user avatar' />

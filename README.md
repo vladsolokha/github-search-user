@@ -24,4 +24,5 @@ Here are all the places where I received guidance, help, code snippets from
 - web app documentation https://developer.mozilla.org/en-US/
 - pagination requirements and help https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Pagination
 - why to not use a table? due to accessibility and there are better ways https://developer.mozilla.org/en-US/docs/Learn/HTML/Tables/Basics
-
+- ran into a huge fetching bug and used various sources to fix. Mainly - https://www.robinwieruch.de/react-hooks-fetch-data/
+- 

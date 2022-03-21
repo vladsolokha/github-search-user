@@ -12,20 +12,26 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [resultList, setResultList] = useState([])
   
-  async function fetchHandle() {
-    setUrl(`https://api.github.com/search/users?q=${searchText}`)
+  useEffect(() => {
+    async function fetchHandle() {
+      setIsLoading(true)  
+      try {
+        const result = await axios.get(url)
+        setResultList(result.data)
+      } catch (error) {
+        setError(error)
+      }
+      setIsLoading(false)
+    }  
+    fetchHandle()
+  }, [url])
 
-    setIsLoading(true)
-
-    try {
-      const result = await axios.get(url)
-      setResultList(result.data)
-    } catch (error) {
-      setError(error)
-    }
-
-    setIsLoading(false)
-  }  
+  useEffect(() => {
+    console.log(`searchText is: ${searchText}`)
+    console.log(`url is: ${url}`)
+    console.log(`isLoading is: ${isLoading}`)
+    console.log(`resultList is: ${resultList}`)
+  }, [resultList])
   
   return (
     <div className="App">
@@ -34,9 +40,10 @@ export default function App() {
       </header>
 
       <div className='main'>
-        <form onSubmit={(e) => {
-            fetchHandle()
+        {/* This Form can be placed in another component */}
+        <form onSubmit={ (e) => {
             e.preventDefault()
+            setUrl(`https://api.github.com/search/users?q=${searchText}`)
           }}>
           <input 
             className='search-bar'
@@ -53,7 +60,6 @@ export default function App() {
           >Search
           </button>
         </form>
-
 
         <Result 
           error={error}
