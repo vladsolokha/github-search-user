@@ -1,29 +1,35 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Octokit } from '@octokit/core'
 import './App.css';
 import Search from './components/Search'
 import Result from './components/Result'
 
 
 export default function App() {
+  const octokit = new Octokit()
   const [searchText, setSearchText] = useState('')
   const [url, setUrl] = useState('')
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [resultList, setResultList] = useState([])
+  const [sortUsers, setSortUsers] = useState('best match')
   
   useEffect(() => {
     async function fetchHandle() {
       setIsLoading(true)  
       try {
-        const result = await axios.get(url)
+        const result = await octokit.request("GET /search/users", {
+          q: `${searchText}`
+        });
+        // const result = await axios.get(url)
         setResultList(result.data)
       } catch (error) {
         setError(error)
       }
       setIsLoading(false)
-    }  
-    fetchHandle()
+    }
+    (searchText !== '') && fetchHandle()
   }, [url])
 
   useEffect(() => {
