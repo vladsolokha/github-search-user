@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Octokit } from '@octokit/core'
 import './App.css';
+import './components/Search.css'
 import Result from './components/Result'
 
 
@@ -35,13 +36,14 @@ export default function App() {
       setIsLoading(false)
     }
     (searchText !== '') && fetchHandle()
-  }, [url])
+  }, [url, sortUsers])
 
   useEffect(() => {
     console.log(`searchText is: ${searchText}`)
     console.log(`url is: ${url}`)
     console.log(`isLoading is: ${isLoading}`)
     console.log(`resultList is: ${resultList}`)
+    console.log(`sortUsers is: ${sortUsers}`)
   }, [resultList])
   
   return (
@@ -50,9 +52,9 @@ export default function App() {
        GitHub User Search 
       </header>
 
-      <section className='user-inputs'>
+      <div className='user-inputs'>
         {/* This Form can be placed in another component */}
-        <form onSubmit={ (e) => {
+        <form name='search' onSubmit={ (e) => {
             e.preventDefault()
             setUrl(`https://api.github.com/search/users?q=${searchText}`)
           }}>
@@ -62,29 +64,31 @@ export default function App() {
             type='search'
             placeholder='search for user'
             value={searchText}
-            onChange={
-              (e) => setSearchText(e.target.value)} 
-          />
+            onChange={(e) => setSearchText(e.target.value)} 
+          />        
           <button
             className='search-button'
             type='submit'
           >Search
           </button>
         </form>
-        
-          <div className='filter-bar'>
-            <select name='sort by'>
+ 
+        <div className='filter-bar'>
+          <label for="sort by">Sort by: </label>
+            <select 
+              name='sort' 
+              onChange={(e) => {setSortUsers(e.target.value)}}
+            >
               <option value='best match'>Best Match</option>
               <option value='followers'>Followers</option>
               <option value='repositories'>Repositories</option>
               <option value='joined'>Joined Date</option>
             </select>
-          </div>
-     
-      </section>
+        </div>
+      </div>
         
       {/* total and page section */}
-      <section className='total-pagination-section'>
+      <div className='total-pagination-section'>
         <div className='total-count'>
           Total Results: {totalCount}
         </div>
@@ -92,7 +96,7 @@ export default function App() {
         <div className='pagination'>
           Display Pages
         </div>
-      </section>
+      </div>
       {/* <Error error={error} /> */}
 
       <Result 

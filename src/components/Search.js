@@ -1,3 +1,5 @@
+import './Search.css'
+
 export default function Search ({ searchText, onSetSearchTextChange, fetchHandle}) {
   return (
     <form onSubmit={ async (e) => {

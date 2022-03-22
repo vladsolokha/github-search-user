@@ -1,17 +1,43 @@
-.results {
-    font-size: 16px;
-}
-
-.user-containers {
-    
-}
-.user-containers li{
+ul {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
 }
-.user-avatar img {
-    width: 50px;
-    height: 50px;
+
+.card {
+    border: 1px solid rgb(83, 83, 83);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: fit-content;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 15px;
+    background-color: blanchedalmond;
+}
+
+.user-name {
+    text-align: center;
+    font-size: 28px;
+}
+
+.user-more-info-section {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.user-more-info-button {
+    font-size: 18px;
+}
+
+div.user-avatar img {
+    max-width: 75px;
+    max-height: 75px;
+    max-block-size: none;
+    padding: 5px;
+    border-radius: 15px;
 }
 
 nav {

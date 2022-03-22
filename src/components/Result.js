@@ -5,13 +5,13 @@ import './Result.css'
 export default function Result ({ error, isLoading, resultList }) {
   const [userResult, setUserResult] = useState([])
   const [itemClicked, setItemClicked] = useState(null)
+
   
   const handleMoreInfo = async (id, login) => {
     const octokit = new Octokit()
     // error 401 requires authentication for next lines
     setItemClicked(itemClicked => itemClicked === id ? 
       null : id)
-    
     const result = await octokit.request("GET /users/{username}", {
       username:  `${login}`
     })
@@ -34,10 +34,10 @@ export default function Result ({ error, isLoading, resultList }) {
     return (
       <div className='results'>
         
-        <div className='user containers'>
+        <div className='user-containers'>
           <ul>
             {resultList.items?.map(item => (
-              <li key={item.id}>
+              <li className='card' key={item.id}>
                 <a 
                   href={item.html_url}
                   target='_blank'
@@ -48,21 +48,25 @@ export default function Result ({ error, isLoading, resultList }) {
                     <img src={item.avatar_url} alt='user avatar' />
                   </div>
                 </a>
-                  <button 
-                    className='user-more-info-button'
-                    onClick={() => {
-                      handleMoreInfo(item.id, item.login)
-                    }}>
-                    More info
-                  </button>
 
-                  {itemClicked === item.id &&  
-                    <div className='user-more-info-section'>
-                        Followers: {userResult.followers}<br/>
-                        Public repos: {userResult.public_repos}<br/>
-                        Bio: {userResult.bio}<br/>
+                <button 
+                  className='user-more-info-button'
+                  onClick={() => {
+                    handleMoreInfo(item.id, item.login)}}
+                >
+                  More info
+                </button>
+
+                {itemClicked === item.id &&
+                  <div className='user-more-info-section'>
+                    Followers: {userResult.followers}<br/>
+                    Public repos: {userResult.public_repos}<br/>
+                    <div className='bio'>
+                      Bio: {userResult.bio}<br/>
                     </div>
-                  } 
+                  </div>
+                }
+                  
               </li>
             ))}
           </ul>

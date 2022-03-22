@@ -3,26 +3,33 @@
 /* Main font  */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+html, .app {
+  display: flex;
+}
+
+select, input, button {
+  font-family: 'Noto Serif', serif;
+  font-size: 24px;
+} 
 
 .App {
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Noto Serif', serif;
+  font-size: 24px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-content: center;
+  align-items: center; 
   padding: 10px;
 }
 
 .App-header {
-  font-size: 90px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 72px;
 }
 
-.user-inputs {
-  font-family: 'Noto Serif', serif;
-  font-size: 32px;
+a {
+  text-decoration: none;
 }
 
-form {
-  margin: auto;
-}
