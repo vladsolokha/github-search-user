@@ -4,10 +4,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 html, .app {
+  height: 100% 100%;
+  width: 100% 100%;
   display: flex;
 }
 
-select, input, button {
+select, option, input, button {
   font-family: 'Noto Serif', serif;
   font-size: 24px;
 } 
@@ -28,8 +30,23 @@ select, input, button {
   font-family: 'Bebas Neue', cursive;
   font-size: 72px;
 }
+.App-header:hover {
+  cursor: pointer;
+}
 
 a {
   text-decoration: none;
 }
 
+form, .filter-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-bar {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
