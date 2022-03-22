@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Octokit } from '@octokit/core'
 import './Result.css'
 
-export default function Result ({ error, isLoading, resultList }) {
+export default function Result ({ isError, error, isLoading, resultList }) {
   const [userResult, setUserResult] = useState([])
   const [itemClicked, setItemClicked] = useState(null)
 
@@ -18,7 +18,7 @@ export default function Result ({ error, isLoading, resultList }) {
     setUserResult(result.data)
     }
   
-  if (error) {
+  if (isError) {
     return (
       <div>
         Something went wrong...    

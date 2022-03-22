@@ -1,60 +1,55 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Octokit } from '@octokit/core'
 import './App.css';
 import './components/Search.css'
 import Result from './components/Result'
+import Pagination from './components/Pagination';
 
 
 export default function App() {  
+
+  const octokit = new Octokit({})
+
   const [searchText, setSearchText] = useState('')
   const [error, setError] = useState(null)
+  const [isError, setIsError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [resultList, setResultList] = useState([])
   const [sortUsers, setSortUsers] = useState('best%20match')
-  const [page, setPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
   const per_page = 10
-  const [url, setUrl] = useState('')
+  const [url, setUrl] = useState(null)
 
   const totalCount = resultList.total_count
-  const totalPages = totalCount/10;
 
   const refreshPage = () => {
     window.location.reload()
   }
 
-  const octokit = new Octokit({})
-  const request = octokit.request("GET /search/users", {
-    q: `${searchText}`,
-    sort: `${sortUsers}`,
-    per_page: `${per_page}`,
-    page: `${page}`
-  });
-
-
-
-
-
-  const onPageChange = () => {
-
-  }
-  useMemo(() => {
-  }, [])
 
   useEffect(() => {
     async function fetchHandle() {
       setIsLoading(true)
 
       try {
-        const result = await {request}
+        const result = await octokit.request("GET /search/users", {
+          q: `${searchText}`,
+          sort: `${sortUsers}`,
+          per_page: `${per_page}`,
+          page: `${currentPage}`
+        });
         // const result = await axios.get(url)
         setResultList(result.data)
       } catch (error) {
+        setIsError(true)
         setError(error)
       }
       setIsLoading(false)
+      setIsError(false)
     }
-    fetchHandle()
-  }, [])
+    if (url !== null) fetchHandle()
+    // run fetchHandle if sortUsers has changed value
+  }, [url])
 
 
   useEffect(() => {
@@ -76,7 +71,7 @@ export default function App() {
         <div className='form-container'>
           <form name='search' onSubmit={ (e) => {
               e.preventDefault()
-              setUrl(`https://api.github.com/search/users?q=${searchText}&sort=${sortUsers}&per_page=${per_page}&page=${page}`)
+              setUrl(`https://api.github.com/search/users?q=${searchText}&sort=${sortUsers}&per_page=${per_page}&page=${currentPage}`)
             }}>
             <input
               className='search-bar'
@@ -94,10 +89,12 @@ export default function App() {
           </form>
           </div>
         <div className='filter-bar'>
-          <label for="sort by">Sort by: </label>
+          <label htmlFor="sort by">Sort by: </label>
             <select 
               name='sort' 
-              onChange={(e) => {setSortUsers(e.target.value)}}
+              value={sortUsers}
+              onChange={(sortUsers) => {
+                setSortUsers(sortUsers)}}
             >
               <option value='best%20match'>Best Match</option>
               <option value='followers'>Followers</option>
@@ -113,13 +110,21 @@ export default function App() {
           Total Results: {totalCount}
         </div>
       
-        <div className='pagination'>
+        <div className='pagination'> 
+          if (url !== null) {<Pagination 
+            className='pagination'
+            totalCount={totalCount}
+            currentPage={currentPage}
+            per_page={per_page}
+            onPageChange={page => setCurrentPage(page)}
+          />}}
         </div>
       </div>
       {/* <Error error={error} /> */}
 
       <Result 
         error={error}
+        isError={isError}
         isLoaded={isLoading}
         resultList={resultList}
       />

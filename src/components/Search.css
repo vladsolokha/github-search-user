@@ -15,7 +15,14 @@ input[type=search]:focus {
   background-color: rgba(127, 255, 212);
 }
 
-input[type=search]:active {
+input[type=search]:active  {
+  background-color: transparent;
+}
+input[type=search]:-internal-autofill-selected {
+  background-color: transparent;
+}
+
+input[type=search]:-webkit-autofill {
   background-color: transparent;
 }
 
