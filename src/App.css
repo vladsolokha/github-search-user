@@ -45,8 +45,9 @@ form, .filter-bar {
   align-items: center;
 }
 
-.filter-bar {
+.filter-bar, .total-pagination-section {
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
+
