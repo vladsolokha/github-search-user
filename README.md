@@ -32,3 +32,5 @@ Here are all the places where I received guidance, help, code snippets from
 
 
 -There are 3 branches I worked in. Search: first branch to design the search component. It didn't work so well because I was having issues with App communicating with Search. Next, debug-search contained more fixes of search component and it's also where I began implementing the Results component. The last branch, pagination, I did the most work in. I styled components, connected pagination to the app via a hook and separate pagination component. It is the one I merged to main for the final product. 
+
+-Last branch feature/simple-pagination removed the buggy page changes and replaced with simple forward / back buttons to paginate through results. Made some elements more mobile friendly. Page size has 100 results instead of 10, but number can be changed with per_page variable. 
