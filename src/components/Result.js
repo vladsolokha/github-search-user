@@ -6,7 +6,6 @@ export default function Result ({ isError, error, isLoading, resultList }) {
   const [userResult, setUserResult] = useState([])
   const [itemClicked, setItemClicked] = useState(null)
 
-  
   const handleMoreInfo = async (id, login) => {
     const octokit = new Octokit()
     setItemClicked(itemClicked => itemClicked === id ? 
@@ -20,7 +19,7 @@ export default function Result ({ isError, error, isLoading, resultList }) {
   if (isError) {
     return (
       <div>
-        Something went wrong...    
+        Something went wrong...
         <br/>
         Error: {error.message}
       </div>
