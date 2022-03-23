@@ -90,8 +90,8 @@ export default function App() {
             <input
               className='search-bar'
               name='search'
-              type='text'
-              placeholder='search...'
+              type='search'
+              placeholder='search here'
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)} 
             />
