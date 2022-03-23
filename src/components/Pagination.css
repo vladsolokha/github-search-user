@@ -8,6 +8,8 @@
   display: flex;
   justify-content: center;
   list-style-type: none;
+  margin: 10px;
+  padding-top: 15px;
 }
 
 .pagination-item {
@@ -76,4 +78,5 @@ li.pagination-item::after {
 
 .page-text {
   text-align: center;
+  padding-bottom: 15px;
 }

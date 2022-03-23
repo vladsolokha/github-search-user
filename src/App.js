@@ -20,7 +20,7 @@ export default function App() {
   const [sortUsers, setSortUsers] = useState('best%20match')
   const [currentPage, setCurrentPage] = useState(1)
   
-  const per_page = 10
+  const per_page = 100
   const totalCount = resultList.total_count
 
   // Controller for fetching data from API
@@ -140,20 +140,20 @@ export default function App() {
         
       {/* Total results and page section */}
       <div className='total-pagination-section'>
-        {!initialState &&
-          <div className='total-count'>
-            Total Results: {totalCount}
-          </div>
-        }
         <div className='pagination'> 
           {!initialState ? (
             <Pagination 
-              totalCount={totalCount}
-              currentPage={currentPage}
-              per_page={per_page}
-              onPageChange={(e) => fetchNewPageHandle(e)}
+            totalCount={totalCount}
+            currentPage={currentPage}
+            per_page={per_page}
+            onPageChange={(e) => fetchNewPageHandle(e)}
             />
             ) : (null)
+          }
+          {!initialState &&
+            <div className='total-count'>
+              Total Results: {totalCount}
+            </div>
           }
         </div>
       </div>

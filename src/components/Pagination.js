@@ -9,7 +9,8 @@ const Pagination = props => {
     onPageChange
   } = props;
 
-  const paginationRange = Math.ceil(totalCount/per_page)
+  // Calculate total pages, 
+  const paginationRange = Math.floor(totalCount/per_page)
   const displayLowResult = (currentPage*per_page)-(per_page-1)
   const displayHighResult = (currentPage*per_page)
 
@@ -38,10 +39,7 @@ const Pagination = props => {
   
   return (
     <div>
-      <div className='page-text'>
-        Current Page: {currentPage}<br/>
-        Displaying Results: {displayLowResult} of {displayHighResult}<br/>
-      </div>
+      
       <div className='pagination-container'>
         {/* Previous Page button, don't display if page is first*/}
         {currentPage !== 1 ? (
@@ -63,6 +61,10 @@ const Pagination = props => {
           </button>
           ) : (<div/>)
         }
+      </div>
+      <div className='page-text'>
+        Page no. {currentPage}<br/>
+        Displaying Results: {displayLowResult} of {displayHighResult}<br/>
       </div>
     </div>
   )
