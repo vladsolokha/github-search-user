@@ -3,22 +3,115 @@
 /* Main font  */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+:root {
+  --darkestgreen: #789395;
+  --darkergreen: #94B49F;
+  --lightgreen: #B4CFB0;
+  --light: #E5E3C9;
+}
+
+html, body, .App {
+  height: 100% 100%; 
+  background-color: var(--darkestgreen);
+}
+
+select, option, input, button {
+  font-family: 'Noto Serif', serif;
+  font-size: 24px;
+} 
 
 .App {
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Noto Serif', serif;
+  font-size: 24px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-content: center;
+  align-items: center; 
   padding: 10px;
+  text-align: center;
+  min-width: 100%;
 }
 
 .App-header {
-  font-size: 90px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 72px;
+  padding: 10px;
+  background-color: var(--light);
+  width: 90%;
+  text-align: center;
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);  
+  margin-bottom: 7px;  
+}
+.App-header:hover {
+  cursor: pointer;
 }
 
-.main {
-  font-family: 'Noto Serif', serif;
-  font-size: 32px;
+a {
+  text-decoration: none;
+}
+
+form, .filter-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-bar {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.total-count {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: var(--darkergreen);
+}
+
+.total-pagination-section {
+  width: 90%;
+}
+
+/* Search section styles  */
+.user-inputs {
+  background-color: var(--lightgreen);
+  padding-bottom: 15px;
+  width: 90%;
+}
+
+input[type=search] {
+  max-width: 50%;
+  padding: 8px;
+  margin: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: var(--light);
+  background-image: url('./assets/search-icon.png');
+  background-position: 5px 12px;
+  background-repeat: no-repeat;
+  padding-left: 35px;
+}
+
+input[type=search]:focus {
+  background-color: var(--light);
+}
+
+input[type=search]:active  {
+  background-color: var(--light);
+}
+
+.search-button {
+  border-radius: 10px;
+  background-color: var(--light);
+  padding: 8px;
+  font-family: 'Bebas Neue', cursive;
+}
+
+select {
+  border-radius: 10px;
+  background-color: var(--light);
 }
