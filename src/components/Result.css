@@ -1,3 +1,9 @@
+.no-results {
+    padding: 10px;
+    background-color: var(--light);
+    width: 88%;
+}
+
 ul {
     display: flex;
     flex-direction: row;
@@ -8,7 +14,7 @@ ul {
 
 .card {
     border: 1px solid rgb(83, 83, 83);
-    box-shadow: 10px 10px 2px 1px rgba(0, 0, 255, .2);    
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +22,7 @@ ul {
     width: 275px;
     padding: 10px;
     margin: 5px;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: var(--light);
 }
 

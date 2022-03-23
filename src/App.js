@@ -20,7 +20,7 @@ export default function App() {
   const [sortUsers, setSortUsers] = useState('best%20match')
   const [currentPage, setCurrentPage] = useState(1)
   
-  const per_page = 10
+  const per_page = 100
   const totalCount = resultList.total_count
 
   // Controller for fetching data from API
@@ -72,7 +72,7 @@ export default function App() {
       setInitialState(false)
     }
     // Fetch only if url has been set to some string
-    if (url !== null) fetchHandle()
+    if (url !== null && searchText !== '') fetchHandle()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url])
   
@@ -91,7 +91,7 @@ export default function App() {
               className='search-bar'
               name='search'
               type='search'
-              placeholder='search...'
+              placeholder='search here'
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)} 
             />
@@ -124,7 +124,9 @@ export default function App() {
       
       {/* Display results when there are some  */}
       {totalCount === 0 ? (
-        <div>No Results Found for {searchText}</div>
+        <div className='no-results'>
+          No Results Found for '{searchText}'
+        </div>
       ) : (
         // Go to result component 
         <Result 
@@ -138,20 +140,20 @@ export default function App() {
         
       {/* Total results and page section */}
       <div className='total-pagination-section'>
-        {!initialState &&
-          <div className='total-count'>
-            Total Results: {totalCount}
-          </div>
-        }
         <div className='pagination'> 
           {!initialState ? (
             <Pagination 
-              totalCount={totalCount}
-              currentPage={currentPage}
-              per_page={per_page}
-              onPageChange={(e) => fetchNewPageHandle(e)}
+            totalCount={totalCount}
+            currentPage={currentPage}
+            per_page={per_page}
+            onPageChange={(e) => fetchNewPageHandle(e)}
             />
             ) : (null)
+          }
+          {!initialState &&
+            <div className='total-count'>
+              Total Results: {totalCount}
+            </div>
           }
         </div>
       </div>
