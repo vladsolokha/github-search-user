@@ -1,3 +1,9 @@
+.no-results {
+    padding: 10px;
+    background-color: var(--light);
+    width: 88%;
+}
+
 ul {
     display: flex;
     flex-direction: row;

@@ -72,7 +72,7 @@ export default function App() {
       setInitialState(false)
     }
     // Fetch only if url has been set to some string
-    if (url !== null) fetchHandle()
+    if (url !== null && searchText !== '') fetchHandle()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url])
   
@@ -124,7 +124,9 @@ export default function App() {
       
       {/* Display results when there are some  */}
       {totalCount === 0 ? (
-        <div>No Results Found for {searchText}</div>
+        <div className='no-results'>
+          No Results Found for '{searchText}'
+        </div>
       ) : (
         // Go to result component 
         <Result 
