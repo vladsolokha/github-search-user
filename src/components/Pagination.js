@@ -9,16 +9,16 @@ const Pagination = props => {
     onPageChange
   } = props;
 
-  // Calculate total pages, 
-  const paginationRange = Math.floor(totalCount/per_page)
+  // Calculate total pages with range
+  const paginationRange = Math.ceil(totalCount/per_page)
   const displayLowResult = (currentPage*per_page)-(per_page-1)
   const displayHighResult = (currentPage*per_page)
 
 
   // Next page handler, if page is last page, change page to last page, don't go past the last page.
   const onNext = () => {
-    if (currentPage >= paginationRange.length) {
-      onPageChange(paginationRange.length)
+    if (currentPage >= paginationRange) {
+      onPageChange(paginationRange)
     } else {
       onPageChange(currentPage + 1)
     }
@@ -52,7 +52,7 @@ const Pagination = props => {
           ) : (null)
         }        
         {/*  Next Page button, don't display if page is last */}
-        {currentPage !== paginationRange.length ? (
+        {currentPage !== paginationRange ? (
           <button        
             className='pagination-item'
             onClick={onNext}
@@ -64,7 +64,7 @@ const Pagination = props => {
       </div>
       <div className='page-text'>
         Page no. {currentPage}<br/>
-        Displaying Results: {displayLowResult} of {displayHighResult}<br/>
+        Showing Results: {displayLowResult} of {displayHighResult}<br/>
       </div>
     </div>
   )
