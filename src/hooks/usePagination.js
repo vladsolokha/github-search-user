@@ -1,13 +1,15 @@
 import {useMemo} from 'react'
 
-export const DOTS = '...'
+export const DOTS = '---'
 
+// Range function accepts first,last numbers for pages
 const range = (start, end) => {
   let length = end - start + 1
   return Array.from({ length }, (_, idx) => idx + start)
 };
 
 export const usePagination = ({
+  // props coming in from pagination component
   totalCount,
   per_page,
   siblingCount = 3,
@@ -29,10 +31,9 @@ export const usePagination = ({
       currentPage + siblingCount,
       totalPageCount
     )
-
     const shouldShowLeftDots = leftSiblingIndex > 2
     const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2
-
+    
     const firstPageIndex = 1
     const lastPageIndex = totalPageCount
 
@@ -64,5 +65,5 @@ export const usePagination = ({
       
   }, [totalCount, per_page, siblingCount, currentPage])
 
-  return paginationRange
+  return paginationRange //A list of pages sent to pagination component
 }

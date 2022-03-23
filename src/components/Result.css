@@ -8,14 +8,16 @@ ul {
 
 .card {
     border: 1px solid rgb(83, 83, 83);
+    box-shadow: 10px 10px 2px 1px rgba(0, 0, 255, .2);    
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: fit-content;
+    text-align: center;
+    width: 275px;
     padding: 10px;
     margin: 5px;
     border-radius: 15px;
-    background-color: blanchedalmond;
+    background-color: var(--light);
 }
 
 .user-name {
@@ -24,35 +26,29 @@ ul {
 }
 
 .user-more-info-section {
+    text-align: left;
     margin-top: 5px;
     padding: 5px;
 }
 
 .user-more-info-button {
     font-size: 18px;
+    background-color: var(--light);
+    border-radius: 10px;
 }
 
-div.user-avatar img {
+.user-avatar img {
     max-width: 75px;
     max-height: 75px;
     max-block-size: none;
     padding: 5px;
     border-radius: 15px;
 }
-
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
         
-.pagination {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    column-gap: 2px;
+@media screen and (max-width: 600px) {
+    .card {
+        min-width: 85%;
+    }
 }
-
 
     

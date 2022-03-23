@@ -1,10 +1,17 @@
+.pagination {
+  background-color: var(--lightgreen);
+  margin: auto;
+  width: 98%;
+}
+
 .pagination-container {
   display: flex;
+  justify-content: center;
   list-style-type: none;
 }
 
-.pagination-container.pagination-item {
-    padding: 0 15px;
+.pagination-item {
+    padding: 0 10px;
     height: 32px;
     text-align: center;
     margin: auto 4px;
@@ -15,52 +22,58 @@
     letter-spacing: 0.01071em;
     border-radius: 16px;
     line-height: 1.43;
-    font-size: 13px;
-    min-width: 32px;
-  }
-    .pagination-item-dots:hover {
-      background-color: transparent;
-      cursor: default;
-    }
-    .pagination-item:hover {
-      background-color: rgba(0, 0, 0, 0.04);
-      cursor: pointer;
-    }
+    min-width: 1%;
+}
 
-    .pagination-item.selected {
-      background-color: rgba(0, 0, 0, 0.08);
-    }
+.pagination-item-dots:hover {
+  background-color: transparent;
+  cursor: default;
+}
+.pagination-item:hover {
+  background-color: var(--light);
+  cursor: pointer;
+}
 
-    .arrow-left::before, .arrow-right::before {
-        position: relative;
-        /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
-        content: '';
-        /* By using an em scale, the arrows will size with the font */
-        display: inline-block;
-        width: 0.4em;
-        height: 0.4em;
-        border-right: 0.12em solid rgba(0, 0, 0, 0.87);
-        border-top: 0.12em solid rgba(0, 0, 0, 0.87);
-      }
+li.pagination-item::after {
+  background-color: var(--light);
+  border: 1px solid black;
+  border-radius: 10px;
+}
 
-      .arrow-left {
-        transform: rotate(-135deg) translate(-50%);
-      }
+.arrow-left::before, .arrow-right::before {
+    position: relative;
+    /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
+    content: '';
+    /* By using an em scale, the arrows will size with the font */
+    display: inline-block;
+    width: 0.4em;
+    height: 0.4em;
+    border-right: 0.12em solid rgba(0, 0, 0, 0.87);
+    border-top: 0.12em solid rgba(0, 0, 0, 0.87);
+}
 
-      .arrow-right {
-        transform: rotate(45deg);
-      }
+.arrow-left {
+  transform: rotate(-135deg) translate(-50%);
+}
 
-    .arrow-left.disabled, .arrow-right.disabled {
-      pointer-events: none;
-    }
-      
-    .arrow-left::after, .arrow-right::after {
-        border-right: 0.12em solid rgba(0, 0, 0, 0.43);
-        border-top: 0.12em solid rgba(0, 0, 0, 0.43);
-      }
+.arrow-right {
+  transform: rotate(45deg);
+}
 
-      .arrow-left:hover, .arrow-right:hover {
-        background-color: transparent;
-        cursor: default;
-      }
+.arrow-left:disabled, .arrow-right:disabled {
+  pointer-events: none;
+}
+
+.arrow-left::after, .arrow-right::after {
+  border-right: 0.12em solid rgba(0, 0, 0, 0.43);
+  border-top: 0.12em solid rgba(0, 0, 0, 0.43);
+}
+
+.arrow-left:hover, .arrow-right:hover {
+  background-color: transparent;
+  cursor: default;
+}
+
+.page-text {
+  text-align: center;
+}
